@@ -33,7 +33,8 @@ namespace Backend.Data
             }
         }
         
-
+        public DbSet<Provincia> Provincias { get; set; }
+        public DbSet<Pais> Paises { get; set; }
         public DbSet<Localidad> Localidades { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,14 +56,41 @@ namespace Backend.Data
                 .HasQueryFilter(c => !c.IsDeleted);
 
             modelBuilder.Entity<Localidad>().HasData(
-                new Localidad { Id = 1, Name = "Buenos Aires" },
-                new Localidad { Id = 2, Name = "Santa Fe" },
-                new Localidad { Id = 3, Name = "Vera y Pintado" }
-         );
+                new Localidad { Id = 1, Name = "Buenos Aires", ProvinciaId = 1 },
+                new Localidad { Id = 2, Name = "Santa Fe", ProvinciaId = 2 },
+                new Localidad { Id = 3, Name = "Vera y Pintado", ProvinciaId = 2 }
+            );
+
+                //Desactivamos la eliminacion en cascada para la relacion entre localidad y provincias usando Fluent API
+            modelBuilder.Entity<Provincia>().HasData(
+                new Provincia { Id = 1, Name = "Buenos Aires", PaisId = 1 },
+                new Provincia { Id = 2, Name = "Santa Fe", PaisId = 1 },
+                new Provincia { Id = 3, Name = "Chaco", PaisId = 1 }
+            );
+             modelBuilder.Entity<Provincia>()
+                .HasOne(p => p.Pais)
+                .WithMany()
+                .HasForeignKey(p => p.PaisId)
+                .OnDelete(DeleteBehavior.Restrict);
 
 
-            modelBuilder.Entity<Localidad>()
-                .HasQueryFilter(l => !l.IsDeleted);    
+             modelBuilder.Entity<Localidad>()
+                .HasOne(l => l.Provincia)
+                .WithMany()
+                .HasForeignKey(l => l.ProvinciaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Pais>().HasData(
+                new Pais { Id = 1, Name = "Argentina" },
+                new Pais { Id = 2, Name = "Brasil" },
+                new Pais { Id = 3, Name = "Uruguay" }
+            );
+
+             modelBuilder.Entity<Provincia>()
+                .HasQueryFilter(p => !p.IsDeleted);
+
+            modelBuilder.Entity<Pais>()
+                .HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

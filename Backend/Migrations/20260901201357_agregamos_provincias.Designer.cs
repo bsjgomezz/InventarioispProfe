@@ -3,6 +3,7 @@ using System;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(InventarioContext))]
-    partial class InventarioContextModelSnapshot : ModelSnapshot
+    [Migration("20260901201357_agregamos_provincias")]
+    partial class agregamos_provincias
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +71,7 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             Address = "Calle Falsa 123",
-                            Created_at = new DateTimeOffset(new DateTime(2026, 9, 1, 18, 46, 39, 167, DateTimeKind.Unspecified).AddTicks(5887), new TimeSpan(0, -3, 0, 0, 0)),
+                            Created_at = new DateTimeOffset(new DateTime(2026, 9, 1, 17, 13, 56, 893, DateTimeKind.Unspecified).AddTicks(4096), new TimeSpan(0, -3, 0, 0, 0)),
                             Dni = "12345678",
                             Firstname = "Juan",
                             IsDeleted = false,
@@ -79,7 +82,7 @@ namespace Backend.Migrations
                         {
                             Id = 2,
                             Address = "Avenida Siempre Viva 456",
-                            Created_at = new DateTimeOffset(new DateTime(2026, 9, 1, 18, 46, 39, 167, DateTimeKind.Unspecified).AddTicks(5916), new TimeSpan(0, -3, 0, 0, 0)),
+                            Created_at = new DateTimeOffset(new DateTime(2026, 9, 1, 17, 13, 56, 893, DateTimeKind.Unspecified).AddTicks(4125), new TimeSpan(0, -3, 0, 0, 0)),
                             Dni = "87654321",
                             Firstname = "María",
                             IsDeleted = false,
@@ -90,7 +93,7 @@ namespace Backend.Migrations
                         {
                             Id = 3,
                             Address = "Callejón del Beso 789",
-                            Created_at = new DateTimeOffset(new DateTime(2026, 9, 1, 18, 46, 39, 167, DateTimeKind.Unspecified).AddTicks(5919), new TimeSpan(0, -3, 0, 0, 0)),
+                            Created_at = new DateTimeOffset(new DateTime(2026, 9, 1, 17, 13, 56, 893, DateTimeKind.Unspecified).AddTicks(4127), new TimeSpan(0, -3, 0, 0, 0)),
                             Dni = "11223344",
                             Firstname = "Pedro",
                             IsDeleted = false,
@@ -143,53 +146,7 @@ namespace Backend.Migrations
                             Id = 3,
                             IsDeleted = false,
                             Name = "Vera y Pintado",
-                            ProvinciaId = 2
-                        });
-                });
-
-            modelBuilder.Entity("Services.Models.Pais", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("ProvinciaId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Paises");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsDeleted = false,
-                            Name = "Argentina",
-                            ProvinciaId = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsDeleted = false,
-                            Name = "Brasil",
-                            ProvinciaId = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            IsDeleted = false,
-                            Name = "Uruguay",
-                            ProvinciaId = 0
+                            ProvinciaId = 3
                         });
                 });
 
@@ -208,12 +165,7 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PaisId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PaisId");
 
                     b.ToTable("Provincias");
 
@@ -222,22 +174,19 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             IsDeleted = false,
-                            Name = "Buenos Aires",
-                            PaisId = 1
+                            Name = "Buenos Aires"
                         },
                         new
                         {
                             Id = 2,
                             IsDeleted = false,
-                            Name = "Santa Fe",
-                            PaisId = 1
+                            Name = "Santa Fe"
                         },
                         new
                         {
                             Id = 3,
                             IsDeleted = false,
-                            Name = "Chaco",
-                            PaisId = 1
+                            Name = "Chaco"
                         });
                 });
 
@@ -261,17 +210,6 @@ namespace Backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Provincia");
-                });
-
-            modelBuilder.Entity("Services.Models.Provincia", b =>
-                {
-                    b.HasOne("Services.Models.Pais", "Pais")
-                        .WithMany()
-                        .HasForeignKey("PaisId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Pais");
                 });
 #pragma warning restore 612, 618
         }
