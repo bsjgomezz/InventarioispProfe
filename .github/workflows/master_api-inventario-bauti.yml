@@ -54,7 +54,17 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DE79F7206B304D60A69084D7CE9DFE3C }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B5A2971BB18E48B098DC21DE246C8497 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D746F13C4CD04E7CBE4CF9F45CC3B3A5 }}
+      
+      - name: Configurar cadena de conexión PostgreSQL
+        run: |
+            az webapp config appsettings set \
+            --resource-group api-inventario-bauti_group \
+            --name api-inventario-bauti \
+            --settings "ConnectionStrings__postgresRemote=${{ secrets.POSTGREREMOTE }}"
 
+        
+
+  
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
