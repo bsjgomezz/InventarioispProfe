@@ -58,8 +58,8 @@ jobs:
       - name: Configurar cadena de conexión PostgreSQL
         run: |
             az webapp config appsettings set \
-            --resource-group api-inventario-bauti_group \
-            --name api-inventario-bauti \
+            --resource-group api-inventario-bauti2_group \
+            --name api-inventario-bauti2 \
             --settings "ConnectionStrings__postgresRemote=${{ secrets.POSTGREREMOTE }}"
 
         
