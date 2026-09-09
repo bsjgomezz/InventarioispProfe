@@ -59,9 +59,9 @@ jobs:
       - name: Configurar cadena de conexión PostgreSQL
         run: |
             az webapp config appsettings set \
-            --resource-group api-inventario-bauti3_group \
-            --name api-inventario-bauti3 \
-            --settings "ConnectionStrings__postgresRemote=${{ secrets.POSTGREREMOTE }}"
+              --resource-group api-inventario-bauti3_group \
+              --name api-inventario-bauti3 \
+              --settings "ConnectionStrings__postgresRemote=${{ secrets.POSTGREREMOTE }}"
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
