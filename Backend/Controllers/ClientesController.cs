@@ -41,6 +41,8 @@ namespace Backend.Controllers
                 .ThenInclude(l => l.Provincia)
                 .ThenInclude(p => p.Pais)
                 .Where(c => c.IsDeleted == true)
+                .OrderBy(c => c.Lastname)
+                .ThenBy(c => c.Firstname)
                 .ToListAsync();
         }
 
