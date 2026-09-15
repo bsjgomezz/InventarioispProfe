@@ -19,10 +19,10 @@ namespace Desktop.Views
         public ClientesApiView()
         {
             InitializeComponent();
-            LoadClientes();
+            _ = LoadClientes();
         }
 
-        private async void LoadClientes()
+        private async Task LoadClientes()
         {
             var clientes = await clientesService.GetAllAsync();
             if (clientes != null)
@@ -153,8 +153,76 @@ namespace Desktop.Views
 
             //else
             //{
-                MessageBox.Show("Seleccione un cliente para eliminar");
+            MessageBox.Show("Seleccione un cliente para eliminar");
+        }
+
+
+        private async Task LoadDeleteds()
+        {
+            var clientes = await clientesService.GetAllDeletedsAsync();
+            if (clientes != null)
+            {
+                dataGridClientes.DataSource = clientes;
+            }
+
+        }
+
+
+
+
+        // Ahora implementamos el botón de restaurar, que solo estará habilitado cuando se muestren los clientes eliminados
+        private async void btnRestaurar_Click(object sender, EventArgs e)
+        {
+
+            // capturamos el cliente seleccionado en la grilla
+            if (dataGridClientes.CurrentRow != null)
+            {
+                var clienteARestaurar = (Cliente)dataGridClientes.CurrentRow.DataBoundItem;
+                // preguntamos si está seguro de restaurar el cliente
+                var result = MessageBox.Show($"¿Está seguro de restaurar al cliente {clienteARestaurar.Firstname} {clienteARestaurar.Lastname}?",
+                    "Confirmar restauración", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    // restauramos el cliente
+                    var clienteRestaurado = await clientesService.RestoreClienteAsync((int)
+                    clienteARestaurar.Id!);
+                    if (clienteRestaurado)
+                    {
+                        MessageBox.Show($"Cliente {clienteARestaurar.Firstname} {clienteARestaurar.Lastname} restaurado correctamente");
+                        await LoadDeleteds();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al restaurar el cliente");
+                    }
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Seleccione un cliente para restaurar");
             }
         }
+
+        private async void verEliminadosCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBusqueda.Enabled = !verEliminadosCheck.Checked;
+            btnBuscar.Enabled = !verEliminadosCheck.Checked;
+            btnNuevo.Enabled = !verEliminadosCheck.Checked;
+            btnModificar.Enabled = !verEliminadosCheck.Checked;
+            btnEliminar.Enabled = !verEliminadosCheck.Checked;
+            btnRestaurar.Enabled = verEliminadosCheck.Checked;
+            if (verEliminadosCheck.Checked)
+            {
+                await LoadDeleteds();
+            }
+            else
+            {
+                await LoadClientes();
+            }
+        }
+
+
     }
+}
 

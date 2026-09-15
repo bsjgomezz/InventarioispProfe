@@ -31,6 +31,8 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPageLista = new TabPage();
+            btnRestaurar = new FontAwesome.Sharp.IconButton();
+            verEliminadosCheck = new CheckBox();
             btnEliminar = new FontAwesome.Sharp.IconButton();
             btnModificar = new FontAwesome.Sharp.IconButton();
             btnNuevo = new FontAwesome.Sharp.IconButton();
@@ -72,14 +74,16 @@
             tabControl1.Controls.Add(tabPageLista);
             tabControl1.Controls.Add(tabPageAgregarEditar);
             tabControl1.Location = new Point(13, 87);
-            tabControl1.Margin = new Padding(4, 4, 4, 4);
+            tabControl1.Margin = new Padding(4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1223, 568);
+            tabControl1.Size = new Size(1291, 673);
             tabControl1.TabIndex = 1;
             // 
             // tabPageLista
             // 
+            tabPageLista.Controls.Add(btnRestaurar);
+            tabPageLista.Controls.Add(verEliminadosCheck);
             tabPageLista.Controls.Add(btnEliminar);
             tabPageLista.Controls.Add(btnModificar);
             tabPageLista.Controls.Add(btnNuevo);
@@ -88,13 +92,38 @@
             tabPageLista.Controls.Add(label2);
             tabPageLista.Controls.Add(dataGridClientes);
             tabPageLista.Location = new Point(8, 46);
-            tabPageLista.Margin = new Padding(4, 4, 4, 4);
+            tabPageLista.Margin = new Padding(4);
             tabPageLista.Name = "tabPageLista";
-            tabPageLista.Padding = new Padding(4, 4, 4, 4);
-            tabPageLista.Size = new Size(1207, 514);
+            tabPageLista.Padding = new Padding(4);
+            tabPageLista.Size = new Size(1275, 619);
             tabPageLista.TabIndex = 0;
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
+            // 
+            // btnRestaurar
+            // 
+            btnRestaurar.Enabled = false;
+            btnRestaurar.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnRestaurar.IconColor = Color.Black;
+            btnRestaurar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnRestaurar.Location = new Point(1032, 441);
+            btnRestaurar.Name = "btnRestaurar";
+            btnRestaurar.Size = new Size(173, 46);
+            btnRestaurar.TabIndex = 8;
+            btnRestaurar.Text = "Restaurar";
+            btnRestaurar.UseVisualStyleBackColor = true;
+            btnRestaurar.Click += btnRestaurar_Click;
+            // 
+            // verEliminadosCheck
+            // 
+            verEliminadosCheck.AutoSize = true;
+            verEliminadosCheck.Location = new Point(1025, 366);
+            verEliminadosCheck.Name = "verEliminadosCheck";
+            verEliminadosCheck.Size = new Size(203, 36);
+            verEliminadosCheck.TabIndex = 7;
+            verEliminadosCheck.Text = "Ver eliminados";
+            verEliminadosCheck.UseVisualStyleBackColor = true;
+            verEliminadosCheck.CheckedChanged += verEliminadosCheck_CheckedChanged;
             // 
             // btnEliminar
             // 
@@ -102,7 +131,7 @@
             btnEliminar.IconColor = Color.Black;
             btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminar.Location = new Point(1032, 292);
-            btnEliminar.Margin = new Padding(4, 4, 4, 4);
+            btnEliminar.Margin = new Padding(4);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(177, 47);
             btnEliminar.TabIndex = 6;
@@ -116,7 +145,7 @@
             btnModificar.IconColor = Color.Black;
             btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnModificar.Location = new Point(1028, 210);
-            btnModificar.Margin = new Padding(4, 4, 4, 4);
+            btnModificar.Margin = new Padding(4);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(177, 47);
             btnModificar.TabIndex = 5;
@@ -130,7 +159,7 @@
             btnNuevo.IconColor = Color.Black;
             btnNuevo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnNuevo.Location = new Point(1028, 134);
-            btnNuevo.Margin = new Padding(4, 4, 4, 4);
+            btnNuevo.Margin = new Padding(4);
             btnNuevo.Name = "btnNuevo";
             btnNuevo.Size = new Size(177, 47);
             btnNuevo.TabIndex = 4;
@@ -144,7 +173,7 @@
             btnBuscar.IconColor = Color.Black;
             btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnBuscar.Location = new Point(1028, 31);
-            btnBuscar.Margin = new Padding(4, 4, 4, 4);
+            btnBuscar.Margin = new Padding(4);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(177, 47);
             btnBuscar.TabIndex = 3;
@@ -155,7 +184,7 @@
             // txtBusqueda
             // 
             txtBusqueda.Location = new Point(142, 38);
-            txtBusqueda.Margin = new Padding(4, 4, 4, 4);
+            txtBusqueda.Margin = new Padding(4);
             txtBusqueda.Name = "txtBusqueda";
             txtBusqueda.Size = new Size(867, 39);
             txtBusqueda.TabIndex = 2;
@@ -177,7 +206,7 @@
             dataGridClientes.AllowUserToDeleteRows = false;
             dataGridClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridClientes.Location = new Point(9, 101);
-            dataGridClientes.Margin = new Padding(4, 4, 4, 4);
+            dataGridClientes.Margin = new Padding(4);
             dataGridClientes.Name = "dataGridClientes";
             dataGridClientes.ReadOnly = true;
             dataGridClientes.RowHeadersWidth = 62;
@@ -197,10 +226,10 @@
             tabPageAgregarEditar.Controls.Add(btnCancelar);
             tabPageAgregarEditar.Controls.Add(btnGuardar);
             tabPageAgregarEditar.Location = new Point(8, 46);
-            tabPageAgregarEditar.Margin = new Padding(4, 4, 4, 4);
+            tabPageAgregarEditar.Margin = new Padding(4);
             tabPageAgregarEditar.Name = "tabPageAgregarEditar";
-            tabPageAgregarEditar.Padding = new Padding(4, 4, 4, 4);
-            tabPageAgregarEditar.Size = new Size(1207, 514);
+            tabPageAgregarEditar.Padding = new Padding(4);
+            tabPageAgregarEditar.Size = new Size(1275, 619);
             tabPageAgregarEditar.TabIndex = 1;
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
@@ -248,7 +277,7 @@
             // txtDireccion
             // 
             txtDireccion.Location = new Point(270, 415);
-            txtDireccion.Margin = new Padding(4, 4, 4, 4);
+            txtDireccion.Margin = new Padding(4);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(618, 39);
             txtDireccion.TabIndex = 9;
@@ -256,7 +285,7 @@
             // txtDni
             // 
             txtDni.Location = new Point(270, 310);
-            txtDni.Margin = new Padding(4, 4, 4, 4);
+            txtDni.Margin = new Padding(4);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(618, 39);
             txtDni.TabIndex = 8;
@@ -264,7 +293,7 @@
             // txtApellido
             // 
             txtApellido.Location = new Point(270, 209);
-            txtApellido.Margin = new Padding(4, 4, 4, 4);
+            txtApellido.Margin = new Padding(4);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(618, 39);
             txtApellido.TabIndex = 7;
@@ -272,7 +301,7 @@
             // txtNombre
             // 
             txtNombre.Location = new Point(270, 113);
-            txtNombre.Margin = new Padding(4, 4, 4, 4);
+            txtNombre.Margin = new Padding(4);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(618, 39);
             txtNombre.TabIndex = 6;
@@ -283,7 +312,7 @@
             btnCancelar.IconColor = Color.Black;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelar.Location = new Point(992, 241);
-            btnCancelar.Margin = new Padding(4, 4, 4, 4);
+            btnCancelar.Margin = new Padding(4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(177, 47);
             btnCancelar.TabIndex = 5;
@@ -297,7 +326,7 @@
             btnGuardar.IconColor = Color.Black;
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnGuardar.Location = new Point(992, 151);
-            btnGuardar.Margin = new Padding(4, 4, 4, 4);
+            btnGuardar.Margin = new Padding(4);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(177, 47);
             btnGuardar.TabIndex = 4;
@@ -309,10 +338,10 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1252, 671);
+            ClientSize = new Size(1320, 776);
             Controls.Add(tabControl1);
             Controls.Add(label1);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "ClientesApiView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clientes";
@@ -349,5 +378,7 @@
         private FontAwesome.Sharp.IconButton btnNuevo;
         private FontAwesome.Sharp.IconButton btnModificar;
         private FontAwesome.Sharp.IconButton btnEliminar;
+        private CheckBox verEliminadosCheck;
+        private FontAwesome.Sharp.IconButton btnRestaurar;
     }
 }
