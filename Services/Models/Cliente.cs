@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +11,24 @@ namespace Services.Models
 
     public class Cliente
     {
-        public int Id { get; set; } = 0;
+       [Browsable(false)] public int Id { get; set; } = 0;
 
-        public DateTimeOffset? Created_at { get; set; } = DateTimeOffset.UtcNow;
+       [Browsable(false)] public DateTimeOffset? Created_at { get; set; } = DateTimeOffset.UtcNow;
 
+       [DisplayName("Nombre")]
         public string Firstname { get; set; } = string.Empty;
 
+        [DisplayName("Apellido")]
         public string Lastname { get; set; } =string.Empty;
 
+        [DisplayName("DNI")]
         public string Dni { get; set; } =string.Empty;
 
+        [DisplayName("Dirección")]
         public string Address { get; set; } = string.Empty;
-        public int LocalidadId { get; set; } = 0;
-        public Localidad? Localidad { get; set; } 
-        public bool IsDeleted {  get; set; } = false;
+        [Browsable(false)] public int LocalidadId { get; set; } = 0;
+        public Localidad? Localidad { get; set; }
+
+        [Browsable(false)] public bool IsDeleted {  get; set; } = false;
     }
 }

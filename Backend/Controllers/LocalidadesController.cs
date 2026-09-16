@@ -19,14 +19,14 @@ namespace Backend.Controllers
             _context = context;
         }
 
-        // GET: api/Clientes
+        // GET: api/Localidades
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Localidad>>> GetLocalidades()
         {
             return await _context.Localidades.Include(l => l.Provincia).ThenInclude(p => p.Pais).ToListAsync();
         }
 
-        // GET: api/Clientes/5
+        // GET: api/Localidades/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Localidad>> GetLocalidades(int id)
         {
@@ -38,6 +38,16 @@ namespace Backend.Controllers
             }
 
             return Localidad;
+        }
+        [HttpGet("deleteds")]
+        public async Task<ActionResult<IEnumerable<Localidad>>> GetDeleteds()
+        {
+            return await _context.Localidades
+                .IgnoreQueryFilters()
+                .Include(l => l.Provincia)
+                .ThenInclude(p => p.Pais)
+                .Where(l => l.IsDeleted == true)
+                .ToListAsync();
         }
 
         // POST: api/Localidades
@@ -98,8 +108,29 @@ namespace Backend.Controllers
 
             return NoContent();
         }
+        //Restaurar Cliente eliminado.
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreLocalidad(int id)
+        {
+            var localidad = await _context.Localidades
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(l => l.Id == id);
 
-              // devolvemos el total de clientes que no estan eliminados
+            if (localidad == null)
+            {
+
+                return NotFound();
+
+            }
+
+            localidad.IsDeleted = false;
+            _context.Entry(localidad).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // devolvemos el total de clientes que no estan eliminados
         [HttpGet("total")]
         public async Task<ActionResult<int>> GetTotalLocalidades()
         {
