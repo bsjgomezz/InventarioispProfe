@@ -32,8 +32,19 @@ internal class Program
         //string cadenaConexion="Host=up-de-fra1-postgresql-3.db.run-on-seenode.com;Port=11550;Database=db_4r596rgwatp9;Username=db_4r596rgwatp9;Password=B1nUrwPXoV9GGckCPYPIFPr5"; 
         builder.Services.AddDbContext<InventarioContext>(
         options => options.UseNpgsql(cadenaConexion));
-        
-        
+
+        // Configurar una política de CORS
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowSpecificOrigins",
+                builder => builder
+                    .WithOrigins("http://localhost:5173", "http://sitioweb.com.ar")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+        });
+
+
+
 
         var app = builder.Build();
 
@@ -43,6 +54,8 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseCors("AllowSpecificOrigins");
 
         app.UseHttpsRedirection();
 
