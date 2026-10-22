@@ -36,9 +36,11 @@
             subMenuClientesSupabase = new FontAwesome.Sharp.IconMenuItem();
             subMenuClientes = new FontAwesome.Sharp.IconMenuItem();
             SubMenuPruebasGemini = new FontAwesome.Sharp.IconMenuItem();
+            clientesAPIViewSubMenu = new ToolStripMenuItem();
             iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
             SubMenuSalirDelSistema = new FontAwesome.Sharp.IconMenuItem();
-            clientesAPIViewSubMenu = new ToolStripMenuItem();
+            iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
+            SubMenuListadoClientes = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,10 +54,10 @@
             BtnSaludo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             BtnSaludo.IconSize = 35;
             BtnSaludo.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSaludo.Location = new Point(16, 596);
-            BtnSaludo.Margin = new Padding(4, 4, 4, 4);
+            BtnSaludo.Location = new Point(10, 372);
+            BtnSaludo.Margin = new Padding(2);
             BtnSaludo.Name = "BtnSaludo";
-            BtnSaludo.Size = new Size(209, 69);
+            BtnSaludo.Size = new Size(129, 43);
             BtnSaludo.TabIndex = 0;
             BtnSaludo.Text = "Saludo";
             BtnSaludo.UseVisualStyleBackColor = false;
@@ -64,11 +66,11 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { iconMenuItem1, iconMenuItem2 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { iconMenuItem1, iconMenuItem2, iconMenuItem3 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 3, 0, 3);
-            menuStrip1.Size = new Size(1244, 44);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(766, 32);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -79,7 +81,7 @@
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem1.Name = "iconMenuItem1";
-            iconMenuItem1.Size = new Size(148, 38);
+            iconMenuItem1.Size = new Size(104, 28);
             iconMenuItem1.Text = "Principal";
             // 
             // SubMenuArticulos
@@ -88,7 +90,7 @@
             SubMenuArticulos.IconColor = Color.Black;
             SubMenuArticulos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             SubMenuArticulos.Name = "SubMenuArticulos";
-            SubMenuArticulos.Size = new Size(482, 44);
+            SubMenuArticulos.Size = new Size(299, 26);
             SubMenuArticulos.Text = "Articulos";
             SubMenuArticulos.Click += SubMenuArticulos_Click;
             // 
@@ -98,7 +100,7 @@
             SubmenuCategorias.IconColor = Color.Black;
             SubmenuCategorias.IconFont = FontAwesome.Sharp.IconFont.Auto;
             SubmenuCategorias.Name = "SubmenuCategorias";
-            SubmenuCategorias.Size = new Size(482, 44);
+            SubmenuCategorias.Size = new Size(299, 26);
             SubmenuCategorias.Text = "Categorías";
             SubmenuCategorias.Click += SubmenuCategorias_Click;
             // 
@@ -108,7 +110,7 @@
             subMenuClientesSupabase.IconColor = Color.Black;
             subMenuClientesSupabase.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuClientesSupabase.Name = "subMenuClientesSupabase";
-            subMenuClientesSupabase.Size = new Size(482, 44);
+            subMenuClientesSupabase.Size = new Size(299, 26);
             subMenuClientesSupabase.Text = "Clientes con paquete Supabase";
             subMenuClientesSupabase.Click += subMenuClientesSupabase_Click;
             // 
@@ -118,7 +120,7 @@
             subMenuClientes.IconColor = Color.Black;
             subMenuClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
             subMenuClientes.Name = "subMenuClientes";
-            subMenuClientes.Size = new Size(482, 44);
+            subMenuClientes.Size = new Size(299, 26);
             subMenuClientes.Text = "Clientes";
             subMenuClientes.Click += subMenuClientes_Click;
             // 
@@ -128,9 +130,16 @@
             SubMenuPruebasGemini.IconColor = Color.Black;
             SubMenuPruebasGemini.IconFont = FontAwesome.Sharp.IconFont.Auto;
             SubMenuPruebasGemini.Name = "SubMenuPruebasGemini";
-            SubMenuPruebasGemini.Size = new Size(482, 44);
+            SubMenuPruebasGemini.Size = new Size(299, 26);
             SubMenuPruebasGemini.Text = "Pruebas con IA - Gemini";
             SubMenuPruebasGemini.Click += SubMenuPruebasGemini_Click;
+            // 
+            // clientesAPIViewSubMenu
+            // 
+            clientesAPIViewSubMenu.Name = "clientesAPIViewSubMenu";
+            clientesAPIViewSubMenu.Size = new Size(299, 26);
+            clientesAPIViewSubMenu.Text = "Clientes API View";
+            clientesAPIViewSubMenu.Click += clientesAPIViewSubMenu_Click;
             // 
             // iconMenuItem2
             // 
@@ -139,7 +148,7 @@
             iconMenuItem2.IconColor = Color.Black;
             iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconMenuItem2.Name = "iconMenuItem2";
-            iconMenuItem2.Size = new Size(103, 38);
+            iconMenuItem2.Size = new Size(76, 28);
             iconMenuItem2.Text = "Salir";
             // 
             // SubMenuSalirDelSistema
@@ -148,27 +157,37 @@
             SubMenuSalirDelSistema.IconColor = Color.Black;
             SubMenuSalirDelSistema.IconFont = FontAwesome.Sharp.IconFont.Auto;
             SubMenuSalirDelSistema.Name = "SubMenuSalirDelSistema";
-            SubMenuSalirDelSistema.Size = new Size(319, 44);
+            SubMenuSalirDelSistema.Size = new Size(200, 26);
             SubMenuSalirDelSistema.Text = "Salir del sistema";
             SubMenuSalirDelSistema.Click += SubMenuSalirDelSistema_Click;
             // 
-            // clientesAPIViewSubMenu
+            // iconMenuItem3
             // 
-            clientesAPIViewSubMenu.Name = "clientesAPIViewSubMenu";
-            clientesAPIViewSubMenu.Size = new Size(482, 44);
-            clientesAPIViewSubMenu.Text = "Clientes API View";
-            clientesAPIViewSubMenu.Click += clientesAPIViewSubMenu_Click;
+            iconMenuItem3.DropDownItems.AddRange(new ToolStripItem[] { SubMenuListadoClientes });
+            iconMenuItem3.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconMenuItem3.IconColor = Color.Black;
+            iconMenuItem3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconMenuItem3.Name = "iconMenuItem3";
+            iconMenuItem3.Size = new Size(106, 28);
+            iconMenuItem3.Text = "Reportes";
+            // 
+            // SubMenuListadoClientes
+            // 
+            SubMenuListadoClientes.Name = "SubMenuListadoClientes";
+            SubMenuListadoClientes.Size = new Size(224, 26);
+            SubMenuListadoClientes.Text = "Listado de Clientes";
+            SubMenuListadoClientes.Click += SubMenuListadoClientes_Click;
             // 
             // MenuPrincipalView
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1244, 681);
+            ClientSize = new Size(766, 426);
             Controls.Add(BtnSaludo);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(2);
             Name = "MenuPrincipalView";
             Text = "Sistema de Inventario ISP20 - 2do año TSDS";
             WindowState = FormWindowState.Maximized;
@@ -191,5 +210,7 @@
         private FontAwesome.Sharp.IconMenuItem subMenuClientesSupabase;
         private FontAwesome.Sharp.IconMenuItem SubMenuPruebasGemini;
         private ToolStripMenuItem clientesAPIViewSubMenu;
+        private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
+        private ToolStripMenuItem SubMenuListadoClientes;
     }
 }
