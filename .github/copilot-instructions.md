@@ -11,8 +11,8 @@
 
 ## High-level architecture
 
-- The repository is a single-project .NET 8 Windows Forms solution: `InventarioISP20.sln` loads `Desktop\Desktop.csproj`.
-- `Desktop\Program.cs` is the entry point and starts the app by running `MenuPrincipalView`.
+- The repository is a .NET 10 solution: `InventarioISP20.sln` loads 7 projects â€” `Desktop` (WinForms), `Backend` (ASP.NET Core Web API + EF Core/PostgreSQL), `Services` (shared library), `Consola` (console), `AppMovil` (MAUI), and `WebApp`/`WebApp.Client` (Blazor Server + WebAssembly).
+- `Desktop\Program.cs` is the entry point and starts the app by running `SplashView`.
 - UI code lives in `Desktop\Views\`. Each form is split across the usual WinForms partial files:
   - `<FormName>.cs` for behavior and event handlers
   - `<FormName>.Designer.cs` for generated control/layout code
@@ -30,4 +30,4 @@
 - Most forms use the `Desktop` namespace, but `UbicacionesView` uses `Desktop.Views` in both partial files. Keep partial class namespaces aligned when editing a form, and be deliberate if you normalize that inconsistency.
 
 ## Mandatory instructions
-- Hablar en español.
+- Hablar en espaï¿½ol.

@@ -224,5 +224,9 @@ namespace Desktop.Services
             };
         }
 
+        internal async Task GetAllWithFilterAsync(object text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

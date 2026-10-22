@@ -57,7 +57,7 @@ namespace Desktop.Views
                     ($" Usuario encontrado! " + $" Bienvenido ;D");
                     this.Hide();
                     var mainView = new MenuPrincipalView();
-                    mainView.Show();
+                    mainView.ShowDialog();
                     this.Close();
                 }
 
